@@ -8,6 +8,7 @@ import { UsersApiModule } from './apis/users-api/users-api.module';
 import { MongoDbModule } from './cores/mongoDb/mongoDb.module';
 import { MoviesApiModule } from './apis/movies-api/movies-api.module';
 import { TVShowsApiModule } from './apis/tv-shows-api/tv-shows-api.module';
+import { usersListApiModule } from './apis/users-list-api/users-list-api.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { TVShowsApiModule } from './apis/tv-shows-api/tv-shows-api.module';
     UsersApiModule,
     MoviesApiModule,
     TVShowsApiModule,
+    usersListApiModule,
     MongoDbModule,
   ],
   controllers: [AppController],

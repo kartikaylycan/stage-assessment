@@ -3,7 +3,7 @@ import type { LoggerService } from '@nestjs/common';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import { addContentToUserListDto } from './dto/lists.dto';
 import { UsersAdaptor } from 'src/modules/users/users.adaptor';
-import { AddUserDto, FetchUsersListDto } from './dto/users.dto';
+import { AddUserDto, FetchUsersDto } from './dto/users.dto';
 
 @Injectable()
 export class UsersApiService {
@@ -13,12 +13,7 @@ export class UsersApiService {
     private readonly usersAdaptorService: UsersAdaptor,
   ) {}
 
-  addContentToUserList(requestBody: addContentToUserListDto) {
-    this.logger.log('info', 'Inside service method');
-    this.logger.log('info', `Request Body: ${JSON.stringify(requestBody)}`);
-  }
-
-  getAllActiveUsers(queryParams: FetchUsersListDto) {
+  getAllActiveUsers(queryParams: FetchUsersDto) {
     const { page, limit, fetchInactive } = queryParams;
     return this.usersAdaptorService.getAllActiveUsers(
       page,
