@@ -70,6 +70,22 @@ $ mau deploy
 
 With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
+**Design & Scalability**
+
+- **Architecture:** The codebase follows a modular NestJS structure where each feature (APIs, modules, adaptors) is isolated. Controllers remain thin and delegate business logic to services; persistence concerns are encapsulated in adaptor/provider layers. This separation improves maintainability, testability, and parallel development.
+
+- **Performance optimizations:** Keep queries efficient by projecting only required fields, adding appropriate database indexes on frequently-filtered/sorted fields, and paginating results to avoid large responses. Use connection pooling and reuse database connections. DTOs and lightweight response shapes reduce serialization overhead.
+
+- **Scalability strategies:** The API is designed to be stateless so instances can scale horizontally behind a load balancer. Containerization (Docker) and orchestration (Kubernetes) are recommended for autoscaling, health checks, and rolling updates. For heavy or long-running work, offload work to background queues (e.g. BullMQ / RabbitMQ) so the web tier remains responsive.
+
+- **Caching and batching:** Introduce caching (e.g. Redis) for hot/read-heavy data and use batching for bulk reads/writes to reduce DB round-trips. Be conservative with cache invalidation to avoid stale reads.
+
+- **Resilience and observability:** Implement timeouts, retries with backoff, and circuit breakers for external calls. Collect structured logs (winston-compatible), metrics (Prometheus/Grafana), and tracing (OpenTelemetry) to monitor performance and diagnose bottlenecks.
+
+- **Testing and CI:** The adaptor pattern and DTOs make units easy to mock; the project uses Jest for unit tests. Run tests in CI and gate merges on coverage to maintain quality while scaling development.
+
+- **Trade-offs:** Prioritize simple, maintainable designs first. Advanced optimizations (aggressive caching, multi-region DB) add complexity and consistency trade-offs; apply them only after measuring real bottlenecks.
+
 ## Resources
 
 Check out a few resources that may come in handy when working with NestJS:
