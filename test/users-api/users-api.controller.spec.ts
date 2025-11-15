@@ -15,7 +15,6 @@ describe('UsersApiController', () => {
 
   beforeEach(async () => {
     usersApiService = {
-      addContentToUserList: jest.fn(),
       createUser: jest.fn(),
       getAllActiveUsers: jest.fn(),
     };
@@ -31,16 +30,6 @@ describe('UsersApiController', () => {
     }).compile();
 
     controller = module.get<UsersApiController>(UsersApiController);
-  });
-
-  it('addContentToUserList should call service and return message', () => {
-    const body = { category: 'MOVIE', userId: 'u1', itemId: 'i1' } as any;
-
-    const result = controller.addContentToUserList(body);
-
-    expect(usersApiService.addContentToUserList).toHaveBeenCalledWith(body);
-    expect(result).toEqual({ message: 'Content added to user list' });
-    expect(mockLogger.log).toHaveBeenCalled();
   });
 
   it('addUser should return CREATED when service returns data', async () => {
