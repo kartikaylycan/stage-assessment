@@ -35,7 +35,7 @@ export class AddUserDto {
   preferences: UserPreferencesDto;
 }
 
-export class FetchUsersListDto {
+export class FetchUsersDto {
   @IsOptional()
   @Type(() => Number)
   @Min(0)
