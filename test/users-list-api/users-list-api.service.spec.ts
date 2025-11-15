@@ -6,7 +6,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersListApiService } from '../../src/apis/users-list-api/users-list-api.service';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import { UsersListAdaptor } from 'src/modules/users-list/users-list.adaptor';
-import { BadRequestException, InternalServerErrorException } from '@nestjs/common';
+import {
+  BadRequestException,
+  InternalServerErrorException,
+} from '@nestjs/common';
 
 describe('UsersListApiService', () => {
   let service: UsersListApiService;
